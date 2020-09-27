@@ -11,6 +11,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value="/api")
 class ProdutoResource {
+
+//    Injeção de dependência
     @Autowired
     DocumentoRepository documentoRepository;
 
@@ -33,15 +35,15 @@ class ProdutoResource {
     }
 
     @PutMapping("/documento/{id}")
-    public Optional<Documento> atualiza(@PathVariable(value="id") Integer id,
+    public Documento atualiza(@PathVariable(value="id") Integer id,
                               @RequestBody Documento documento){
         Optional<Documento> documentoAntigo = documentoRepository.findById(id);
         if (documentoAntigo.isPresent()){
             documentoAntigo.get().setTitulo(documento.getTitulo());
             documentoAntigo.get().setAutor(documento.getAutor());
-            return documentoAntigo;
+            return documentoRepository.save(documentoAntigo.get());
         }
-        return documentoAntigo;
+        return documentoAntigo.get();
     }
 
     @GetMapping("/documentos")

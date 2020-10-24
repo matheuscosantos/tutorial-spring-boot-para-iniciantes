@@ -5,14 +5,14 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name="TB_PRODUTO")
+@Table(name = "TB_PRODUTO")
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 public class Documento {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String titulo;
     private String autor;
